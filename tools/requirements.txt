@@ -1,0 +1,17 @@
+# P00 tools — Python requirements
+# Verified working set on this machine (2026-09-29).
+# The standard library is sufficient for stage 1; these are for later stages.
+#
+#   python -m pip install -r tools/requirements.txt
+#
+# Stage 1 (p00_s1_scope.py) imports ONLY the standard library.
+# numpy / pandas are reserved for stage 2+ (NIF geometry, material stats,
+# duplicate-asset grouping).
+
+# currently NOT required — install before stage 2 if used
+# numpy>=2.0
+# pandas>=2.2
+#
+# NIF geometry parsing (stage 5) needs a NIF library; PyNifly is not
+# installed on this machine yet and is NOT vendored:
+#   python -m pip install pynifly

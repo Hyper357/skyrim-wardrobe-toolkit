@@ -1,0 +1,87 @@
+# ============================================================
+# skyrim-wardrobe-toolkit — .gitignore
+# ============================================================
+# 原则：只提交【源码与文档】。
+#       报告 CSV / 中间 JSON 是流水线的【产物】，可本地重新生成，
+#       且单文件最大 97 MB —— 逼近 GitHub 100 MB 硬上限，不进版本库。
+# ============================================================
+
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+
+# ---------- 报告产物：CSV ----------
+# 全部忽略。CSV 是扫描产出，跑一次脚本就能再生。
+reports/**/*.csv
+
+# 想提交某几份小清单（比如 01_MOD_INVENTORY.csv，17 KB）时，强制加：
+#   git add -f reports/P00_RERUN/01_MOD_INVENTORY.csv
+
+
+# ---------- 中间证据：大 JSON ----------
+# 保留 data/p00_scope.json（11 KB，含 modlist SHA256，是证据链的根）
+# 忽略 P00_RERUN 的大 JSON / gz（合计 29 MB）
+data/P00_RERUN/*.json
+data/P00_RERUN/*.json.gz
+data/P00_RERUN/*.log
+
+
+# ---------- 人审看板的预览截图（内容含第三方 mod 画面，自行决定）----------
+# 默认提交（它们是人审看板的一部分，共约 2 MB）。
+# 若不想公开第三方画面截图，取消下面两行注释：
+# reports/P01/review_ui/assets/previews/
+# reports/P01/review_ui/assets/
+
+
+# ---------- 打包产物 ----------
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*_PACKAGE.zip
+
+
+# ---------- 备份与临时文件 ----------
+*.bak
+*.bak.*
+*.bak-*
+*.orig
+*.rej
+*.tmp
+*.temp
+~$*
+*.swp
+*.swo
+*~
+.tmp/
+temp/
+staging/
+
+
+# ---------- 编辑器 / 系统 ----------
+.vscode/
+.idea/
+*.code-workspace
+Thumbs.db
+desktop.ini
+.DS_Store
+
+
+# ---------- 本地机器配置 ----------
+# 路径常量写死在 tools 顶部；如果你本地改了路径又不想提交，放这里
+# tools/local_config.py
+*.local.py
